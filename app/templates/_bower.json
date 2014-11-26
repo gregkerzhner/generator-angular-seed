@@ -1,0 +1,23 @@
+{
+  "name": "<%= appName %>",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "<%= angularVersion %>",
+    <% if(jQueryVersion){%>
+    "jquery": "<%=jQueryVersion%>",
+    <% } %>
+
+    <% if(bootstrapVersion){%>
+      "bootstrap": "<%=bootstrapVersion%>",
+    <% } %>
+    "angular-cookies": "<%=angularVersion%>",
+    "angular-sanitize": "<%=angularVersion%>",
+    "angular-animate": "<%=angularVersion%>",
+    <% if(uiRouterVersion){%>
+      "angular-ui-router": "<%=uiRouterVersion%>",
+    <% } %>
+    <% if(underscoreVersion){%>
+    "underscore": "<%= underscoreVersion %>"
+    <% }%>
+  }
+}
