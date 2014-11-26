@@ -72,5 +72,24 @@ module.exports = yeoman.generators.Base.extend({
     this.copy("_index.html", this.appName+'/app/_index.html', this)
     this.copy("_app.scss", this.appName+"/app/styles/app.scss", this)
     this.template("_app.js", this.appName+'/app/scripts/app.js', this)
+    this.template("_module.js", this.appName+'/app/scripts/foo/foo.js', this)
+    this.template("_module.tpl.html", this.appName+'/app/scripts/foo/foo.tpl.html', this)
+
+    var that = this;
+
+    this.conflicter.resolve(function (err) {
+      var hook   = '<!-- ===== yeoman hook ===== -->';
+      var path   =  that.appName+'/app/_index.html';
+      var file   = that.readFileAsString(path);
+      var insert = "<body ng-app='"+that.appName+"'>";  
+      console.log("File:")
+      console.log(file)
+      console.log("Index")
+      console.log(file.indexOf('<!-- ===== yeoman hook ===== -->'))
+      console.log("new file")
+      var newFile = file.replace(hook, insert+'\n'+hook)
+      console.log(newFile)
+      that.writeFileFromString(newFile, path);
+    });
   }
 }); 

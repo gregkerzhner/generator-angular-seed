@@ -17,13 +17,13 @@
     <link rel="stylesheet" href="/styles/<%= rand %>styles.css">
     <% } %>
   </head>
-  <body ng-app>
+<!-- ===== yeoman hook ===== -->
     <% if (env ==="development") { %>
     <script src="/vendor-scripts.js"></script>
     <script src="/templates.js"></script>
     <script src="/app-scripts.js"></script>
     <% } else { %>
-    <script src="<%= rand %>-scripts.js"></script>
+    <script src="<%= rand %>scripts.js"></script>
     <% } %>
   </body>
 </html>

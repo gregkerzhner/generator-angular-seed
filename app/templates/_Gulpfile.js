@@ -78,6 +78,15 @@ gulp.task('webserver', function() {
   });
 });
 
+
+gulp.task('webserver-build', function() {
+  connect.server({
+    root: 'build',
+    port: 9000
+  });
+});
+
+
 gulp.task('build-js', function(){
   return gulp.src([ 'development/vendor-scripts.js', 'development/templates.js', 'development/app-scripts.js' ])
     .pipe(concat('scripts.js'))
@@ -220,7 +229,7 @@ gulp.task('watch', function(){
 
 gulp.task('concat', function(){
   return runSequence('appScripts', 'vendorScripts', 'vendorStyles', 'appStyles','templates', function() {
-    
+
   });
 })
 
