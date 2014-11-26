@@ -11,7 +11,7 @@ angular.module('<%=appName%>', [
 .config(function ($locationProvider, $httpProvider) {
 
 }) 
-.run(function($state, $timeout, $rootScope, $location){
+.run(function($timeout, $rootScope, $location){
   alert('Your angular app is initialized.  Happy hacking!')
 })
 

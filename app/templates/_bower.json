@@ -10,14 +10,14 @@
     <% if(bootstrapVersion){%>
       "bootstrap": "<%=bootstrapVersion%>",
     <% } %>
-    "angular-cookies": "<%=angularVersion%>",
     "angular-sanitize": "<%=angularVersion%>",
     "angular-animate": "<%=angularVersion%>",
     <% if(uiRouterVersion){%>
       "angular-ui-router": "<%=uiRouterVersion%>",
     <% } %>
     <% if(underscoreVersion){%>
-    "underscore": "<%= underscoreVersion %>"
+    "underscore": "<%= underscoreVersion %>",
     <% }%>
+    "angular-cookies": "<%=angularVersion%>"
   }
 }
