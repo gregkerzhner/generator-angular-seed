@@ -98,6 +98,21 @@ gulp.task('build-js', function(){
     .pipe(gulp.dest('build'));
 });
 
+
+gulp.task('pretty-js', function(){
+  return gulp.src([ 'development/vendor-scripts.js', 'development/templates.js', 'development/app-scripts.js' ])
+    .pipe(concat('scripts.js'))
+    .pipe(ngAnnotate())
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('pretty-styles', function(){
+  return gulp.src(['development/styles/vendor-styles.css', 'development/styles/app-styles.css'])
+    .pipe(concat('styles.css'))
+    .pipe(gulp.dest('build/styles'))
+});
+
+
 var styles = function(outName, outPath){
   return gulp.src(['development/styles/vendor-styles.css', 'development/styles/app-styles.css'])
     .pipe(concat(outName))
@@ -154,8 +169,13 @@ gulp.task('staging', function() {
 });
 
 gulp.task('production', function() {
-  runSequence('clean', 'config-production','appScripts', 'vendorScripts', 'vendorStyles', 'appStyles','templates','build-js', 'build-styles', 'production-index','build-other-files', function() {
-  
+  runSequence('clean', 'config-production','appScripts', 'vendorScripts', 'vendorStyles', 'appStyles','templates','build-js', 'build-styles', 'production-index','build-other-files', function() {  
+  });
+});
+
+gulp.task('pretty-production', function() {
+  rand = "";
+  runSequence('clean', 'config-production','appScripts', 'vendorScripts', 'vendorStyles', 'appStyles','templates','pretty-js', 'pretty-styles', 'production-index','build-other-files', function() {  
   });
 });
 

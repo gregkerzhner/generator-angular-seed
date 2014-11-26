@@ -9,7 +9,7 @@ module.exports = yeoman.generators.Base.extend({
 
     var prompts = [{
         name: 'appName',
-        message: 'What is the name ?',
+        message: 'What would you like to call your angular app (and base module)?',
         required: true
       },
       {
@@ -18,19 +18,19 @@ module.exports = yeoman.generators.Base.extend({
       },
       {
         name: 'uiRouterVersion',
-        message: 'UI Router version?'
+        message: 'UI Router version? (Or just press enter if you don\'t want this library)'
       },
       {
         name: 'jQueryVersion',
-        message: 'jQuery Version?'
+        message: 'jQuery Version? (Or just press enter if you don\'t want this library)'
       },
       {
         name: 'bootstrapVersion',
-        message: 'Bootstrap version?'
+        message: 'Bootstrap version? (Or just press enter if you don\'t want this library)'
       },
       {
         name: 'underscoreVersion',
-        message: 'Underscore Version?'
+        message: 'Underscore Version? (Or just press enter if you don\'t want this library)'
       }
 
     ];
@@ -60,6 +60,8 @@ module.exports = yeoman.generators.Base.extend({
 
   generateFiles: function(){
     this.mkdir(this.appName); 
+    this.mkdir(this.appName+'/app/fonts'); 
+    this.mkdir(this.appName+'/app/images'); 
     this.template("_package.json", this.appName+'/package.json', this);
     this.template("_bower.json", this.appName+'/bower.json', this);
     this.template("_Gulpfile.js", this.appName+'/Gulpfile.js', this);
@@ -82,13 +84,7 @@ module.exports = yeoman.generators.Base.extend({
       var path   =  that.appName+'/app/_index.html';
       var file   = that.readFileAsString(path);
       var insert = "<body ng-app='"+that.appName+"'>";  
-      console.log("File:")
-      console.log(file)
-      console.log("Index")
-      console.log(file.indexOf('<!-- ===== yeoman hook ===== -->'))
-      console.log("new file")
       var newFile = file.replace(hook, insert+'\n'+hook)
-      console.log(newFile)
       that.writeFileFromString(newFile, path);
     });
   }
