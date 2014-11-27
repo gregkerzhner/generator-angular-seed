@@ -50,10 +50,6 @@ var otherAssets = [
   ]
 
 
-//var vendorJs = dependencies.vendorJs;
-//var vendorStyles = dependencies.vendorStyles;
-//var otherAssets = dependencies.otherAssets;
-
 var rand = parseInt(Math.random()*10000000000000000).toString();
 
 var config = function(src) {

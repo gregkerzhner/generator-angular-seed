@@ -64,7 +64,6 @@ module.exports = yeoman.generators.Base.extend({
     this.mkdir(this.appName+'/app/images'); 
     this.template("_package.json", this.appName+'/package.json', this);
     this.template("_bower.json", this.appName+'/bower.json', this);
-    this.template("_dependencies.js", this.appName+'/dependencies.js', this);
     this.template("_Gulpfile.js", this.appName+'/Gulpfile.js', this);
 
     this.template("_config.json", this.appName+'/app/scripts/config/config-development.json', this)
