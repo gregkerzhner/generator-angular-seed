@@ -29,6 +29,11 @@
     "gulp-minify-css":"*",
     "gulp-uncache":"*",
     "karma":"*",
-    "karma-jasmine": "~0.2.0"
+    "karma-jasmine": "~0.2.0",
+    "phantomjs":"*",
+    "protractor":"*",
+    "gulp-protractor":"*",
+    "gulp-selenium":"*"
+    
   }
 }

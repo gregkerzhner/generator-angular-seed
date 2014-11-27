@@ -18,8 +18,8 @@ var gulp = require('gulp'),
   gzip = require('gulp-gzip'),
   run = require('gulp-run'),
   minifyCSS = require('gulp-minify-css'),
-  karma = require('karma').server; //,
-  //dependencies = require('./dependencies.js');
+  protractor = require("gulp-protractor").protractor,
+  karma = require('karma').server;
 
 
 var vendorJs =  [
@@ -242,19 +242,33 @@ gulp.task('clean', function(){
   return runSequence('clean-development','clean-build');
 })
 
-gulp.task('run-test', function(done){
+gulp.task('karma', function(done){
   return karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done);
 })
 
-gulp.task('test', function (done) {
-  return runSequence('appScripts','run-test');
+gulp.task('unit-test', function (done) {
+  return runSequence('appScripts','karma');
+});
+
+gulp.task('protractor', function(){
+  gulp.src(["./src/tests/*.js"])
+    .pipe(protractor({
+        configFile: "./protractor.conf.js",
+        args: ['--baseUrl', 'http://127.0.0.1:9000']
+    })) 
+    .on('error', function(e) { console.log(e) })
+});
+
+gulp.task('e2e-test', function(){
+  return runSequence('concat','protractor');
 });
 
 gulp.task('watch', function(){
-  gulp.watch(['app/scripts/**/*.test.js'], ['run-test']);
+  gulp.watch(['e2e/**/*.test.js'], ['e2e-test']);
+  gulp.watch(['app/scripts/**/*.test.js'], ['unit-test']);
   gulp.watch(['!app/scripts/**/*.test.js','app/scripts/**/*.js'], ['appScripts']);
   gulp.watch('app/scripts/**/*.tpl.html', ['templates']);
   gulp.watch('app/styles/**/*.scss', ['appStyles']);
