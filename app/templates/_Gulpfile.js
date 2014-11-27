@@ -103,19 +103,16 @@ gulp.task('build-js', function(){
     .pipe(gulp.dest('build'));
 });
 
-
-gulp.task('pretty-js', function(){
+gulp.task('build-unconcat-js', function(){
   return gulp.src([ 'development/vendor-scripts.js', 'development/templates.js', 'development/app-scripts.js' ])
-    .pipe(concat('scripts.js'))
-    .pipe(ngAnnotate())
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('pretty-styles', function(){
+gulp.task('build-unconcat-styles', function(){
   return gulp.src(['development/styles/vendor-styles.css', 'development/styles/app-styles.css'])
-    .pipe(concat('styles.css'))
     .pipe(gulp.dest('build/styles'))
 });
+
 
 
 var styles = function(outName, outPath){
@@ -178,9 +175,9 @@ gulp.task('production', function() {
   });
 });
 
-gulp.task('pretty-production', function() {
-  rand = "";
-  runSequence('clean', 'config-production','appScripts', 'vendorScripts', 'vendorStyles', 'appStyles','templates','pretty-js', 'pretty-styles', 'production-index','build-other-files', function() {  
+
+gulp.task('build', function() {
+  runSequence('clean', 'config-production','appScripts', 'vendorScripts', 'vendorStyles', 'appStyles','templates','build-unconcat-js', 'build-unconcat-styles', 'build-other-files', function() {  
   });
 });
 
@@ -278,7 +275,7 @@ gulp.task('watch', function(){
 
 gulp.task('concat', function(){
   return runSequence('appScripts', 'vendorScripts', 'vendorStyles', 'appStyles','templates', function() {
-
+    
   });
 })
 
