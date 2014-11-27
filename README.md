@@ -9,6 +9,7 @@ Features:
 
 ### Installation
 ```sh
+$ npm install -g generator-angular-seed
 $ yo angular-seed
 ```
 This will ask you a few questions about versions of dependencies.  If you don't want a certain dependency, just press enter to skip it.  Then,
