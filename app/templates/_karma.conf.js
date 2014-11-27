@@ -4,18 +4,20 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath : './',
 
+    plugins : ['karma-jasmine', 'karma-phantomjs-launcher'],
 
-    // frameworks to use
+        // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
+
 
 
     // list of files / patterns to load in the browser
     files : [
       'development/vendor-scripts.js',
-      'app/vendor/angular-mocks/angular-mocks.js',
       'development/app-scripts.js',
       'development/templates.js',
+      'app/vendor/angular-mocks/angular-mocks.js',
       'app/scripts/**/*.test.js'
     ],
 
@@ -62,6 +64,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };

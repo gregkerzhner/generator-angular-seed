@@ -30,6 +30,7 @@
     "gulp-uncache":"*",
     "karma":"*",
     "karma-jasmine": "~0.2.0",
+    "karma-phantomjs-launcher":"*",
     "phantomjs":"*",
     "protractor":"*",
     "gulp-protractor":"*",

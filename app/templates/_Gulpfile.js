@@ -239,9 +239,14 @@ gulp.task('clean', function(){
 })
 
 gulp.task('karma', function(done){
+
+  gulp.src(['!app/scripts/**/*.test.js','app/scripts/**/*.js'])
+    .pipe(concat('app-scripts.js'))
+    .pipe(gulp.dest('development'))
+
+
   return karma.start({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
+    configFile: __dirname + '/karma.conf.js'
   }, done);
 })
 
@@ -264,12 +269,13 @@ gulp.task('e2e-test', function(){
 
 gulp.task('watch', function(){
   gulp.watch(['e2e/**/*.test.js'], ['e2e-test']);
-  gulp.watch(['app/scripts/**/*.test.js'], ['unit-test']);
-  gulp.watch(['!app/scripts/**/*.test.js','app/scripts/**/*.js'], ['appScripts']);
+  gulp.watch(['app/scripts/**/*.test.js'], ['karma']);
+  gulp.watch(['app/scripts/**/*.js', '!app/scripts/**/*.test.js'], ['appScripts']);
   gulp.watch('app/scripts/**/*.tpl.html', ['templates']);
   gulp.watch('app/styles/**/*.scss', ['appStyles']);
   gulp.watch('app/_index.html', ['index-development']);
 })
+
 
 
 gulp.task('concat', function(){
