@@ -59,6 +59,9 @@ var rand = parseInt(Math.random()*10000000000000000).toString();
 var config = function(src) {
   return gulp.src(src)
     .pipe(ngConstant())
+    .pipe(rename(function (path) {
+      path.basename = 'config'
+    }))
     .pipe(gulp.dest('app/scripts'));
 
 }
