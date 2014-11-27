@@ -17,10 +17,12 @@ var gulp = require('gulp'),
   cloudfront = require("gulp-cloudfront"),
   gzip = require('gulp-gzip'),
   run = require('gulp-run'),
-  minifyCSS = require('gulp-minify-css');
+  minifyCSS = require('gulp-minify-css'),
+  karma = require('karma').server; //,
+  //dependencies = require('./dependencies.js');
 
 
-var vendorJs = [
+var vendorJs =  [
   <% if(jQueryVersion){%>
   'app/vendor/jquery/jquery.js',
   <% } %>
@@ -34,20 +36,23 @@ var vendorJs = [
   <% if(uiRouterVersion){%>
   'app/vendor/angular-ui-router/release/angular-ui-router.js'
   <% } %>
-]
+  ];
 
 var vendorStyles = [
-  <% if(bootstrapVersion){%>
-  'app/vendor/bootstrap/dist/css/bootstrap.css'
-  <% } %>
-]
-
+    <% if(bootstrapVersion){%>
+    'app/vendor/bootstrap/dist/css/bootstrap.css'
+    <% } %>
+  ];
 
 var otherAssets = [
-  './app/fonts/**/*.*',
-  './app/images/**/*.*'   
-];
+    './app/fonts/**/*.*',
+    './app/images/**/*.*'   
+  ]
 
+
+//var vendorJs = dependencies.vendorJs;
+//var vendorStyles = dependencies.vendorStyles;
+//var otherAssets = dependencies.otherAssets;
 
 var rand = parseInt(Math.random()*10000000000000000).toString();
 
@@ -237,7 +242,12 @@ gulp.task('clean', function(){
   return runSequence('clean-development','clean-build');
 })
 
-
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
+});
 
 gulp.task('watch', function(){
   gulp.watch('app/scripts/**/*.js', ['appScripts']);

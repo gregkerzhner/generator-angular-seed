@@ -64,6 +64,7 @@ module.exports = yeoman.generators.Base.extend({
     this.mkdir(this.appName+'/app/images'); 
     this.template("_package.json", this.appName+'/package.json', this);
     this.template("_bower.json", this.appName+'/bower.json', this);
+    this.template("_dependencies.js", this.appName+'/dependencies.js', this);
     this.template("_Gulpfile.js", this.appName+'/Gulpfile.js', this);
 
     this.template("_config.json", this.appName+'/app/scripts/config/config-development.json', this)
@@ -76,6 +77,7 @@ module.exports = yeoman.generators.Base.extend({
     this.template("_app.js", this.appName+'/app/scripts/app.js', this)
     this.template("_module.js", this.appName+'/app/scripts/foo/foo.js', this)
     this.template("_module.tpl.html", this.appName+'/app/scripts/foo/foo.tpl.html', this)
+    this.template("_karma.conf.js", this.appName+'/karma.conf.js', this)
 
     var that = this;
 

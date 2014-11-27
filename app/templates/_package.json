@@ -27,6 +27,8 @@
     "gulp-gzip":"*",
     "gulp-run":"*",
     "gulp-minify-css":"*",
-    "gulp-uncache":"*"
+    "gulp-uncache":"*",
+    "karma":"*",
+    "karma-phantomjs-launcher": "~0.1"
   }
 }
