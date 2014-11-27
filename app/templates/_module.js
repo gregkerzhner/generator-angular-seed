@@ -6,5 +6,8 @@ angular.module('<%=appName%>.foo', [
 })
 
 .controller('<%= camelCaseName %>Controller', function($scope) {
- 
+  $scope.foo;
+  $scope.fooBar = function(){
+    $scope.foo = 'bar';
+  }
 })  

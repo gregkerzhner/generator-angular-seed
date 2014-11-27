@@ -186,7 +186,7 @@ gulp.task('pretty-production', function() {
 
 
 gulp.task('appScripts', function() {
-  return gulp.src(['app/scripts/**/*.js'])
+  return gulp.src(['!app/scripts/**/*.test.js','app/scripts/**/*.js'])
     .pipe(concat('app-scripts.js'))
     .pipe(gulp.dest('development'))
 });
@@ -242,15 +242,20 @@ gulp.task('clean', function(){
   return runSequence('clean-development','clean-build');
 })
 
-gulp.task('test', function (done) {
-  karma.start({
+gulp.task('run-test', function(done){
+  return karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done);
+})
+
+gulp.task('test', function (done) {
+  return runSequence('appScripts','run-test');
 });
 
 gulp.task('watch', function(){
-  gulp.watch('app/scripts/**/*.js', ['appScripts']);
+  gulp.watch(['app/scripts/**/*.test.js'], ['run-test']);
+  gulp.watch(['!app/scripts/**/*.test.js','app/scripts/**/*.js'], ['appScripts']);
   gulp.watch('app/scripts/**/*.tpl.html', ['templates']);
   gulp.watch('app/styles/**/*.scss', ['appStyles']);
   gulp.watch('app/_index.html', ['index-development']);

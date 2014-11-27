@@ -76,6 +76,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy("_app.scss", this.appName+"/app/styles/app.scss", this)
     this.template("_app.js", this.appName+'/app/scripts/app.js', this)
     this.template("_module.js", this.appName+'/app/scripts/foo/foo.js', this)
+    this.template("_unit-test.js", this.appName+'/app/scripts/foo/foo.test.js', this)
     this.template("_module.tpl.html", this.appName+'/app/scripts/foo/foo.tpl.html', this)
     this.template("_karma.conf.js", this.appName+'/karma.conf.js', this)
 

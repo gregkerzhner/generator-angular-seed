@@ -18,6 +18,7 @@
     <% if(underscoreVersion){%>
     "underscore": "<%= underscoreVersion %>",
     <% }%>
+    "angular-mocks": "<%=angularVersion%>",
     "angular-cookies": "<%=angularVersion%>"
   }
 }
