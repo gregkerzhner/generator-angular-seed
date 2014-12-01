@@ -90,6 +90,13 @@ gulp.task('webserver-build', function() {
   });
 });
 
+gulp.task('webserver-demo', function() {
+  connect.server({
+    root: 'demo',
+    port: 8000
+  });
+});
+
 
 gulp.task('build-js', function(){
   return gulp.src([ 'development/vendor-scripts.js', 'development/templates.js', 'development/app-scripts.js' ])
@@ -103,13 +110,15 @@ gulp.task('build-js', function(){
 });
 
 gulp.task('build-unconcat-js', function(){
-  return gulp.src([ 'development/vendor-scripts.js', 'development/templates.js', 'development/app-scripts.js' ])
+  return gulp.src(['development/templates.js', 'development/app-scripts.js' ])
+    .pipe(concat('<%=appName%>.js'))
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('build-unconcat-styles', function(){
-  return gulp.src(['development/styles/vendor-styles.css', 'development/styles/app-styles.css'])
-    .pipe(gulp.dest('build/styles'))
+  return gulp.src(['development/styles/app-styles.css'])
+    .pipe(concat('<%=appName%>.css'))
+    .pipe(gulp.dest('build'))
 });
 
 
