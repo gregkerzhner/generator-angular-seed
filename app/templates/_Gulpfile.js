@@ -206,7 +206,7 @@ gulp.task('templates', function(){
       useStrict: true,
       rename: function (moduleName) {
         //getting rid of prepended relative path
-        return moduleName.substring('<%=appName%>'.length)
+        return moduleName.substring(12)
       }
     }))
     .pipe(concat('templates.js'))
