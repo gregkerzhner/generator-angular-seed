@@ -90,14 +90,6 @@ gulp.task('webserver-build', function() {
   });
 });
 
-gulp.task('webserver-demo', function() {
-  connect.server({
-    root: 'demo',
-    port: 8000
-  });
-});
-
-
 gulp.task('build-js', function(){
   return gulp.src([ 'development/vendor-scripts.js', 'development/templates.js', 'development/app-scripts.js' ])
     .pipe(concat('scripts.js'))
